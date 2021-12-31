@@ -1,6 +1,6 @@
 import com.google.gson.annotations.SerializedName;
 
-public class ArticuloHeaders {
+public class Articulo {
     @SerializedName(value = "id")
 	private String id;
 	@SerializedName(value = "id_user")
@@ -25,6 +25,12 @@ public class ArticuloHeaders {
 	private String  thumbnail_image;
     @SerializedName(value = "username")
 	private String  username;
+	
+	@SerializedName(value = "image_description")
+	private String  image_description;
+	@SerializedName(value = "image_media_type")
+	private String  image_media_type;
+
 
 	public String getId() {
 		return id;
@@ -120,5 +126,23 @@ public class ArticuloHeaders {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	
+
+	public String getImage_description() {
+		return image_description;
+	}
+
+	public void setImage_description(String image_description) {
+		this.image_description = image_media_type;
+	}
+
+	public String getImage_media_type() {
+		return image_media_type;
+	}
+
+	public void setImage_media_type(String image_media_type) {
+		this.image_media_type = image_media_type;
 	}
 }
