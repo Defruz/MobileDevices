@@ -236,11 +236,12 @@ public class Main {
             //System.out.println(resultado);
             articulo = consultaArticulo(urlArticulo);
             //articulo.setId(null);
-            articulo = creActualiza(articulo, urlPrueba, login.getAuthorization());
+            //articulo = creActualiza(articulo, urlPrueba, login.getAuthorization());
             
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             resultado = gson.toJson(articulo);
+            System.out.println(resultado);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

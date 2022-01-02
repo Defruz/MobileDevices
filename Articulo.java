@@ -25,7 +25,8 @@ public class Articulo {
 	private String  thumbnail_image;
     @SerializedName(value = "username")
 	private String  username;
-	
+	@SerializedName(value = "image_data")
+	private String  image_data;
 	@SerializedName(value = "image_description")
 	private String  image_description;
 	@SerializedName(value = "image_media_type")
@@ -128,7 +129,13 @@ public class Articulo {
 		this.username = username;
 	}
 
-	
+	public String getImage_data() {
+		return image_data;
+	}
+
+	public void setImage_data(String image_data) {
+		this.image_data = image_data;
+	}
 
 	public String getImage_description() {
 		return image_description;
