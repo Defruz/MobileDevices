@@ -1,18 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recycler_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#3F51B5"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/titulo_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BRUTAL TIMES"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/categorias"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_below="@id/toolbar"
+        app:tabIndicatorColor="#3F51B5"
+        app:tabIndicatorHeight="3.5dp"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="#3F51B5"
+        app:tabTextColor="#337FFF">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/categoria_todas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TODAS" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/categoria_nacional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nacional" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/categoria_economia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="economía" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/categoria_deportes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="deportes" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/categoria_tecnologia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tecnología" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/visualizado"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/categorias" />
+
+
+</RelativeLayout>
