@@ -21,18 +21,15 @@ public class Nacional extends Fragment {
     AdaptadorRecycler adapter;
     private RecyclerView recyclerViewNacional;
     URL url;
-    {
-        try {
-            url = new URL("https://sanger.dia.fi.upm.es/pmd-task/articles/10/1");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        try {
+            url = new URL ("https://sanger.dia.fi.upm.es/pmd-task/articles/10/1");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         View v = inflater.inflate(R.layout.nacional, null);
 
         recyclerViewNacional = v.findViewById(R.id.recycler_nacional);
@@ -43,13 +40,15 @@ public class Nacional extends Fragment {
 
         listaArticulos = Rest.consultaLista(url);
 
-        for(int i = 0; i<listaArticulos.size();i++){
-            if(listaArticulos.get(i).getCategory() != "Nacional"){
-                listaArticulos.remove(i--);
+        if (listaArticulos!= null){
+            for(int i = 0; i<listaArticulos.size();i++){
+                if(listaArticulos.get(i).getCategory() != "Nacional"){
+                    listaArticulos.remove(i--);
+                }
             }
         }
-        adapter.notifyDataSetChanged();
 
+        adapter.notifyDataSetChanged();
         return v;
     }
 }

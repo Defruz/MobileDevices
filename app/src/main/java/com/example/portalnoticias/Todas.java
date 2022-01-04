@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class Todas extends Fragment {
 
@@ -21,29 +22,24 @@ public class Todas extends Fragment {
     AdaptadorRecycler adapter;
     private RecyclerView recyclerViewTodos;
     URL url;
-    {
-        try {
-            url = new URL("https://sanger.dia.fi.upm.es/pmd-task/articles/10/1");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
+        try {
+            url = new URL ("https://sanger.dia.fi.upm.es/pmd-task/articles/10/1");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         View v = inflater.inflate(R.layout.todas, null);
 
         recyclerViewTodos = v.findViewById(R.id.recycler_todas);
-        listaArticulos = new ArrayList<>();
         recyclerViewTodos.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AdaptadorRecycler(getContext(),listaArticulos);
         recyclerViewTodos.setAdapter(adapter);
 
         listaArticulos = Rest.consultaLista(url);
         adapter.notifyDataSetChanged();
-
         return v;
         }
 }

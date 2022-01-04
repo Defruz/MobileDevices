@@ -21,18 +21,15 @@ public class Economia extends Fragment {
     AdaptadorRecycler adapter;
     private RecyclerView recyclerViewEconomia;
     URL url;
-    {
-        try {
-            url = new URL("https://sanger.dia.fi.upm.es/pmd-task/articles/10/1");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        try {
+            url = new URL ("https://sanger.dia.fi.upm.es/pmd-task/articles/10/1");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         View v = inflater.inflate(R.layout.economia, null);
 
         recyclerViewEconomia = v.findViewById(R.id.recycler_economia);
@@ -42,13 +39,15 @@ public class Economia extends Fragment {
         recyclerViewEconomia.setAdapter(adapter);
 
         listaArticulos = Rest.consultaLista(url);
-        for(int i = 0; i<listaArticulos.size();i++){
-            if(listaArticulos.get(i).getCategory() != "Economía"){
-                listaArticulos.remove(i--);
+        if (listaArticulos != null){
+            for(int i = 0; i<listaArticulos.size();i++){
+                if(listaArticulos.get(i).getCategory() != "Economía"){
+                    listaArticulos.remove(i--);
+                }
             }
         }
-        adapter.notifyDataSetChanged();
 
+        adapter.notifyDataSetChanged();
         return v;
     }
 }

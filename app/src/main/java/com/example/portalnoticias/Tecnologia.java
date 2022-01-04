@@ -21,18 +21,16 @@ public class Tecnologia extends Fragment {
     AdaptadorRecycler adapter;
     private RecyclerView recyclerViewTecnologia;
     URL url;
-    {
-        try {
-            url = new URL("https://sanger.dia.fi.upm.es/pmd-task/articles/10/1");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        try {
+            url = new URL ("https://sanger.dia.fi.upm.es/pmd-task/articles/10/1");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
         View v = inflater.inflate(R.layout.tecnologia, null);
 
         recyclerViewTecnologia = v.findViewById(R.id.recycler_tecnologia);
@@ -42,9 +40,11 @@ public class Tecnologia extends Fragment {
         recyclerViewTecnologia.setAdapter(adapter);
 
         listaArticulos = Rest.consultaLista(url);
-        for(int i = 0; i<listaArticulos.size();i++){
-            if(listaArticulos.get(i).getCategory() != "Tecnología"){
-                listaArticulos.remove(i--);
+        if (listaArticulos!= null) {
+            for (int i = 0; i < listaArticulos.size(); i++) {
+                if (listaArticulos.get(i).getCategory() != "Tecnología") {
+                    listaArticulos.remove(i--);
+                }
             }
         }
         adapter.notifyDataSetChanged();

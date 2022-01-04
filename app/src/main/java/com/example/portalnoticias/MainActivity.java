@@ -6,6 +6,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Window;
 
 import com.google.android.material.tabs.TabItem;
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        //StrictMode.setThreadPolicy(policy);
+
         super.onCreate(savedInstanceState);
         setTitle(null);
         setContentView(R.layout.activity_main);

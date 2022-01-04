@@ -8,6 +8,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+
 public class ManejadorFragmentos extends FragmentPagerAdapter {
 
     int contador_pestanas;
