@@ -33,20 +33,18 @@ public class Nacional extends Fragment {
         View v = inflater.inflate(R.layout.nacional, null);
 
         recyclerViewNacional = v.findViewById(R.id.recycler_nacional);
-        listaArticulos = new ArrayList<>();
-        recyclerViewNacional.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new AdaptadorRecycler(getContext(),listaArticulos);
-        recyclerViewNacional.setAdapter(adapter);
-
         listaArticulos = Rest.consultaLista(url);
-
         if (listaArticulos!= null){
             for(int i = 0; i<listaArticulos.size();i++){
-                if(listaArticulos.get(i).getCategory() != "Nacional"){
-                    listaArticulos.remove(i--);
+                if(!listaArticulos.get(i).getCategory().equals("Nacional")){
+                    listaArticulos.remove(i);
+                    i--;
                 }
             }
         }
+        recyclerViewNacional.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new AdaptadorRecycler(getContext(),listaArticulos);
+        recyclerViewNacional.setAdapter(adapter);
 
         adapter.notifyDataSetChanged();
         return v;

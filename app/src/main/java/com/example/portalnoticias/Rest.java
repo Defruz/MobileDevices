@@ -12,7 +12,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
 import com.google.gson.Gson;
@@ -23,58 +22,19 @@ public class Rest {
     private static String cabecera = null;
 
     public static void login(URL myURL, String username, String passwd) {
-
-        try {
-            // realizar conexion
-            HttpURLConnection myURLConnection = (HttpURLConnection) myURL.openConnection();
-            myURLConnection.setRequestMethod("POST");
-            myURLConnection.setUseCaches(false);
-            myURLConnection.setDoInput(true);
-            myURLConnection.setDoOutput(true);
-
-            myURLConnection.setRequestProperty("Content-Type", "application/json");
-            myURLConnection.connect();
-
-            JsonObject userCredentials = new JsonObject();
-            userCredentials.addProperty("username", username);
-            userCredentials.addProperty("passwd", passwd);
-
-            // enviar informacion del usuario
-            OutputStream os = myURLConnection.getOutputStream();
-            OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
-            osw.write(userCredentials.toString());
-            osw.flush();
-            osw.close();
-
-            // leer lo devuelto por el servidor
-            InputStream is = myURLConnection.getInputStream();
-
-            String result = "";
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                result += line;
-            }
-            reader.close();
-
-            // convertir a formato json el string obtenido como respuesta del servidor
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            PostHeaders resEnJava = gson.fromJson(result, PostHeaders.class);
-
-            cabecera = resEnJava.getAuthorization() + " apikey=" + resEnJava.getApikey();
-
-        } catch (UnsupportedEncodingException e) {
+        try{
+            cabecera = new MakeLogin().execute(myURL, username, passwd).get();
+        }
+        catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
     }
 
     public static ArrayList<Articulo> consultaLista(URL urlLista) {
         try{
-            return new Connection().execute(urlLista).get();
+            return new DownloadList().execute(urlLista).get();
         }
         catch (InterruptedException e) {
             e.printStackTrace();
@@ -85,42 +45,12 @@ public class Rest {
     }
 
     public static Articulo consultaArticulo(URL urlArticulo) {
-        try {
-            String[] url = urlArticulo.toString().split("/");
-            //int id = Integer.valueOf(url[url.length - 1]);
-
-            // realizar conexion
-            HttpURLConnection myURLConnection = (HttpURLConnection) urlArticulo.openConnection();
-            myURLConnection.setRequestMethod("GET");
-            myURLConnection.setUseCaches(false);
-            myURLConnection.setDoInput(true);
-            myURLConnection.setDoOutput(true);
-
-            myURLConnection.setRequestProperty("Content-Type", "application/json");
-            myURLConnection.connect();
-
-            // leer lo devuelto por el servidor en la peticion del get
-            InputStream is = myURLConnection.getInputStream();
-
-            String result = "";
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            String line = null;
-
-            while ((line = reader.readLine()) != null) {
-                result += line;
-            }
-            reader.close();
-
-            // convertir a formato json el string obtenido como respuesta del servidor
-            // crear array copia donde almacenar los articulos a partir del offset indicado
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            Articulo article = gson.fromJson(result, Articulo.class);
-
-            return article;
-
-        } catch (ProtocolException e) {
+        try{
+            return new DownloadArticle().execute(urlArticulo).get();
+        }
+        catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
         return null;

@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        //StrictMode.setThreadPolicy(policy);
 
         super.onCreate(savedInstanceState);
         setTitle(null);
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                if(tab.getPosition() >= 0 && tab.getPosition() <= 5){
+                if(tab.getPosition() >= 0 || tab.getPosition() < 5){
                     manejadorFragmentos.notifyDataSetChanged();
                 }
             }

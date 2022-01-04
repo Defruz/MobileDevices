@@ -33,19 +33,17 @@ public class Economia extends Fragment {
         View v = inflater.inflate(R.layout.economia, null);
 
         recyclerViewEconomia = v.findViewById(R.id.recycler_economia);
-        listaArticulos = new ArrayList<>();
-        recyclerViewEconomia.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new AdaptadorRecycler(getContext(),listaArticulos);
-        recyclerViewEconomia.setAdapter(adapter);
-
         listaArticulos = Rest.consultaLista(url);
         if (listaArticulos != null){
             for(int i = 0; i<listaArticulos.size();i++){
-                if(listaArticulos.get(i).getCategory() != "Economía"){
+                if(!listaArticulos.get(i).getCategory().equals("Economía")){
                     listaArticulos.remove(i--);
                 }
             }
         }
+        recyclerViewEconomia.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new AdaptadorRecycler(getContext(),listaArticulos);
+        recyclerViewEconomia.setAdapter(adapter);
 
         adapter.notifyDataSetChanged();
         return v;

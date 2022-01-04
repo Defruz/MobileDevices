@@ -34,11 +34,10 @@ public class Todas extends Fragment {
         View v = inflater.inflate(R.layout.todas, null);
 
         recyclerViewTodos = v.findViewById(R.id.recycler_todas);
+        listaArticulos = Rest.consultaLista(url);
         recyclerViewTodos.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AdaptadorRecycler(getContext(),listaArticulos);
         recyclerViewTodos.setAdapter(adapter);
-
-        listaArticulos = Rest.consultaLista(url);
         adapter.notifyDataSetChanged();
         return v;
         }

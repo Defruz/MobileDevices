@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class Tecnologia extends Fragment {
 
     ArrayList<Articulo> listaArticulos;
+    ArrayList<Articulo> listaBuena = new ArrayList<Articulo>();;
     AdaptadorRecycler adapter;
     private RecyclerView recyclerViewTecnologia;
     URL url;
@@ -25,30 +26,28 @@ public class Tecnologia extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         try {
             url = new URL ("https://sanger.dia.fi.upm.es/pmd-task/articles/10/1");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         View v = inflater.inflate(R.layout.tecnologia, null);
 
         recyclerViewTecnologia = v.findViewById(R.id.recycler_tecnologia);
-        listaArticulos = new ArrayList<>();
-        recyclerViewTecnologia.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new AdaptadorRecycler(getContext(),listaArticulos);
-        recyclerViewTecnologia.setAdapter(adapter);
-
         listaArticulos = Rest.consultaLista(url);
-        if (listaArticulos!= null) {
-            for (int i = 0; i < listaArticulos.size(); i++) {
-                if (listaArticulos.get(i).getCategory() != "Tecnología") {
+        if (listaArticulos != null){
+            for(int i = 0; i<listaArticulos.size();i++){
+                if(!listaArticulos.get(i).getCategory().equals("Tecnología")){
                     listaArticulos.remove(i--);
                 }
             }
         }
-        adapter.notifyDataSetChanged();
+        recyclerViewTecnologia.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new AdaptadorRecycler(getContext(),listaArticulos);
+        recyclerViewTecnologia.setAdapter(adapter);
 
+        adapter.notifyDataSetChanged();
         return v;
     }
 }
