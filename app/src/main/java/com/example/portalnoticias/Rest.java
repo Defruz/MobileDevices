@@ -19,11 +19,20 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 public class Rest {
-    private static String cabecera = null;
+    private static String cabecera = "noLog";
+
+    public static String getCabecera (){
+        return cabecera;
+    }
+
+    public static void setCabecera (String aux){
+       cabecera = aux;
+    }
 
     public static void login(URL myURL, String username, String passwd) {
         try{
-            cabecera = new MakeLogin().execute(myURL, username, passwd).get();
+            String aux = new MakeLogin().execute(myURL, username, passwd).get();
+            setCabecera(aux);
         }
         catch (InterruptedException e) {
             e.printStackTrace();

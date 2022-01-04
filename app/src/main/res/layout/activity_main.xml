@@ -38,6 +38,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:clickable="true"
+                app:backgroundTint="#EF4242"
+                app:layout_constraintStart_toEndOf="@+id/titulo_app"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="52dp"
+                android:clickable="true"
+                android:visibility="gone"
+                app:backgroundTint="#44CFC2"
+                app:layout_constraintStart_toEndOf="@+id/titulo_app"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
@@ -89,7 +112,40 @@
         android:id="@+id/visualizado"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/categorias" />
+        android:layout_below="@id/categorias">
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/buttonSi"
+            android:layout_width="115dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="175dp"
+            android:backgroundTint="#DD2525"
+            android:text="Cerrar sesión"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonNo"
+            android:layout_width="115dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="175dp"
+            android:backgroundTint="#32A637"
+            android:text="Seguir logueado"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>
