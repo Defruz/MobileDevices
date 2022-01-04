@@ -14,12 +14,18 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.ViewHolder> {
 
     Context context;
     ArrayList<Articulo> listaArticulo;
+    Articulo articulo;
+    Bitmap bitmap;
+    Bitmap bitmap2;
 
     public AdaptadorRecycler(Context context, ArrayList<Articulo> listaArticulo) {
         this.context = context;
@@ -40,7 +46,37 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,vistaArticulo.class);
-                intent.putExtra("id", listaArticulo.get(position).getId());
+
+                String link = "https://sanger.dia.fi.upm.es/pmd-task/article/" + listaArticulo.get(position).getId();
+                URL url = null;
+                try {
+                    url = new URL(link);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                articulo = Rest.consultaArticulo(url);
+                bitmap2= null;
+
+
+                    bitmap = Utility.base64StringToImg(articulo.getImage_data());
+                    if(bitmap != null){
+                        bitmap2 = Bitmap.createScaledBitmap(bitmap,175,150,true);
+                    }
+
+
+
+
+                intent.putExtra("titulo", articulo.getTitle());
+                intent.putExtra("subtitulo", articulo.getSubtitle() );
+                intent.putExtra("categoria", articulo.getCategory());
+                intent.putExtra("cuerpo", articulo.getBody());
+
+                    intent.putExtra("foto", bitmap2);
+
+                intent.putExtra("resumen", articulo.getAbstract());
+                intent.putExtra("user", articulo.getUsername());
+                intent.putExtra("fecha", articulo.getUpdate_date());
+
                 context.startActivity(intent);
             }
         });

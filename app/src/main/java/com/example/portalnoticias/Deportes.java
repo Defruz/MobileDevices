@@ -29,29 +29,22 @@ public class Deportes extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.deportes, null);
 
+        try {
+            url = new URL ("https://sanger.dia.fi.upm.es/pmd-task/articles/100/1");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        listaArticulos = Rest.consultaLista(url);
         recyclerViewDeportes = v.findViewById(R.id.recycler_deportes);
         int id = 1;
         listaBuena = new ArrayList<Articulo>();
-        while(listaBuena.size() < 10){
-            for(int i = 0; i<listaBuena.size();i++){
-                System.out.println (listaBuena.get(i));
-            }
-            String link = "https://sanger.dia.fi.upm.es/pmd-task/articles/10/" + id;
-            System.out.println(link);
-            try {
-                url = new URL (link);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            listaArticulos = Rest.consultaLista(url);
-            if (listaArticulos != null){
-                for(int i = 0; i<listaArticulos.size();i++){
-                    if(listaArticulos.get(i).getCategory() != null && listaArticulos.get(i).getCategory().equals("Deportes")){
-                        listaBuena.add(listaArticulos.get(i));
-                    }
+        if (listaArticulos != null){
+            for(int i = 0; i<listaArticulos.size() && listaBuena.size()<10;i++){
+                if(listaArticulos.get(i).getCategory() != null && listaArticulos.get(i).getCategory().equals("Deportes")){
+                    listaBuena.add(listaArticulos.get(i));
                 }
             }
-            id += 10;
         }
         recyclerViewDeportes.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AdaptadorRecycler(getContext(),listaBuena);
