@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/editText_creaTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Inserta el titulo del articulo"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editText_creaSubtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Inserte el subtitulo del articulo"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editText_creaResumen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Inserte el resumen del articulo"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editText_creaBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Inserte body del articulo"
+                android:inputType="textPersonName" />
+
+
+            <Spinner
+                android:id="@+id/spinner_categoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button_cargarImagen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Seleccionar Imagen" />
+
+            <ImageView
+                android:id="@+id/imageView_imagen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <Button
+                android:id="@+id/button_subirArticulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Crear articulo" />
+
+            <TextView
+                android:id="@+id/textView_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No se han introducido todos los campos necesarios para la creacion del artículo"
+                android:textColor="#F10C0C"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

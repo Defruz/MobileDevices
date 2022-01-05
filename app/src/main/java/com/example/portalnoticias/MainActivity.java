@@ -141,6 +141,14 @@ public class MainActivity extends AppCompatActivity {
                 manejadorFragmentos.notifyDataSetChanged();
             }
         });
+
+        boton_agregar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, crearArticulo.class);
+                startActivity(intent);
+            }
+        });
     }
     public static void cambiarLogin (){
         login.setVisibility(View.GONE);

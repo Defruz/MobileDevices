@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">portalNoticias</string>
+    <string-array name="categoria_array">
+        <item>Deportes</item>
+        <item>Nacional</item>
+        <item>Economía</item>
+        <item>Tecnología</item>
+    </string-array>
+
 </resources>
