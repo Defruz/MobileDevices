@@ -39,7 +39,7 @@ public class vistaArticulo extends AppCompatActivity {
             resumen.setText(i.getStringExtra("resumen"));
 
             usuario = findViewById(R.id.usuario_articulo);
-            usuario.setText(i.getStringExtra("usuario"));
+            usuario.setText(i.getStringExtra("user"));
 
             fecha = findViewById(R.id.fecha_articulo);
             fecha.setText(i.getStringExtra("fecha"));

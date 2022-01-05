@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="320dp"
+    android:layout_height="380dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -15,19 +16,19 @@
         android:id="@+id/cardview">
 
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/titulo"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
-                android:id="@+id/titulo"
-                android:padding="4dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:textColor="@color/black"
+                android:padding="4dp"
                 android:text="El titulo va aqui maquinote"
+                android:textColor="@color/black"
                 android:textSize="22dp"
                 android:textStyle="bold">
 
@@ -40,39 +41,83 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/abstracto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:maxLines="5"
                     android:padding="4dp"
-                    android:id="@+id/abstracto"
                     android:text="Aqui va el abstract del articulo"
-                    android:textSize="16dp">
-                </TextView>
+                    android:textSize="16dp"></TextView>
 
                 <ImageView
+                    android:id="@+id/imagen_miniatura"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="4dp"
                     android:layout_weight="1"
+                    android:padding="4dp"
                     android:scaleType="centerCrop"
-                    android:id="@+id/imagen_miniatura"
-                    android:src="@drawable/ic_launcher_background">
-                </ImageView>
+                    android:src="@drawable/ic_launcher_background"></ImageView>
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/categoria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/categoria"
                 android:text="aqui va la categoria amigo"
-                android:textSize="18dp"
                 android:textColor="@color/black"
-                android:textStyle="bold">
-            </TextView>
+                android:textSize="18dp"
+                android:textStyle="bold"></TextView>
+
+            <android.widget.Toolbar
+                android:id="@+id/toolbar_botones"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#FFFFFF"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                android:visibility="gone">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/boton_eliminar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#F44040"
+                        android:clickable="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.705"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/boton_editar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#FFC107"
+                        android:clickable="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.211"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@android:drawable/ic_menu_edit" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </android.widget.Toolbar>
+
 
         </LinearLayout>
 

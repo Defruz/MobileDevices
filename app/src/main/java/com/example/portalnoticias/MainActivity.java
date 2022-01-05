@@ -2,16 +2,14 @@ package com.example.portalnoticias;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabItem;
@@ -24,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
     TabItem todas,nacional, economia, deportes, tecnologia;
     ManejadorFragmentos manejadorFragmentos;
     Toolbar toolbar;
-    static FloatingActionButton login, close;
+    static FloatingActionButton login, close, categorias, boton_agregar;
     Button cerrar, continuar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle(null);
         setContentView(R.layout.activity_main);
 
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar_botones);
         setSupportActionBar(toolbar);
 
         todas = findViewById(R.id.categoria_todas);
@@ -53,6 +52,19 @@ public class MainActivity extends AppCompatActivity {
         close = findViewById(R.id.close);
         cerrar = findViewById(R.id.buttonSi);
         continuar = findViewById(R.id.buttonNo);
+        categorias = findViewById(R.id.boton_categorias);
+        boton_agregar = findViewById(R.id.boton_agregar);
+
+        final SharedPreferences recordatorio = getSharedPreferences("recuerdame", Context.MODE_PRIVATE);
+
+        String cabecera = recordatorio.getString("apikey", "");
+
+        if(cabecera != null && !cabecera.equals("noLog")){
+            Rest.setCabecera(cabecera);
+            login.setVisibility(View.GONE);
+            close.setVisibility(View.VISIBLE);
+            boton_agregar.setVisibility(View.VISIBLE);
+        }
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -75,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        categorias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tabLayout.setVisibility(View.VISIBLE);
+                categorias.setVisibility(View.GONE);
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,11 +128,18 @@ public class MainActivity extends AppCompatActivity {
                 Rest.setCabecera("noLog");
                 close.setVisibility(View.GONE);
                 login.setVisibility(View.VISIBLE);
+                SharedPreferences.Editor editor = recordatorio.edit();
+                editor.putString("apikey", Rest.getCabecera());
+                editor.apply();
+                AdaptadorRecycler.eliminarEdicion();
+                boton_agregar.setVisibility(View.GONE);
             }
         });
     }
     public static void cambiarLogin (){
         login.setVisibility(View.GONE);
         close.setVisibility(View.VISIBLE);
+        boton_agregar.setVisibility(View.VISIBLE);
+
     }
 }

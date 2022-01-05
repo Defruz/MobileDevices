@@ -67,6 +67,6 @@ public class MakeLogin extends AsyncTask<Object, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return "noLog";
     }
 }

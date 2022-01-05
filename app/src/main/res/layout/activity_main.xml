@@ -8,7 +8,7 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_botones"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#3F51B5"
@@ -53,13 +53,27 @@
                 android:id="@+id/close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="52dp"
-                android:clickable="true"
+                android:layout_marginStart="32dp"                android:clickable="true"
                 android:visibility="gone"
                 app:backgroundTint="#44CFC2"
                 app:layout_constraintStart_toEndOf="@+id/titulo_app"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/boton_categorias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="46dp"
+                android:background="#FFFFFF"
+                android:backgroundTint="#8D63D6"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/titulo_app"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -69,8 +83,8 @@
         android:id="@+id/categorias"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:layout_below="@id/toolbar"
-        android:visibility="visible"
+        android:layout_below="@id/toolbar_botones"
+        android:visibility="gone"
         app:tabIndicatorColor="#3F51B5"
         app:tabIndicatorHeight="3.5dp"
         app:tabMode="scrollable"
@@ -120,11 +134,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/boton_agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="333dp"
+            android:layout_marginTop="600dp"
+            android:backgroundTint="#4CAF50"
+            android:clickable="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_add" />
+
         <Button
             android:id="@+id/buttonSi"
             android:layout_width="115dp"
             android:layout_height="70dp"
-            android:layout_marginEnd="175dp"
+            android:layout_marginEnd="150dp"
             android:backgroundTint="#DD2525"
             android:text="Cerrar sesión"
             android:visibility="gone"
@@ -137,7 +166,7 @@
             android:id="@+id/buttonNo"
             android:layout_width="115dp"
             android:layout_height="70dp"
-            android:layout_marginStart="175dp"
+            android:layout_marginStart="150dp"
             android:backgroundTint="#32A637"
             android:text="Seguir logueado"
             android:visibility="gone"
@@ -145,7 +174,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

@@ -7,7 +7,7 @@
     tools:context=".vistaArticulo">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_botones"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#3F51B5"
@@ -44,7 +44,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="670dp"
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/toolbar_botones"
         android:layout_marginTop="2dp">
 
         <LinearLayout
@@ -56,25 +56,50 @@
                 android:id="@+id/categoria_articulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aqui va el titulo la categoria moro" />
+                android:text="Aqui va la categoria"
+                android:textAlignment="textEnd"
+                android:textAllCaps="true"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/titulo_articulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aqui va el titulo del articulo" />
+                android:text="Aqui va el titulo del articulo"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/subtitulo_articulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aqui va el subirtutlo" />
+                android:text="Aqui va el subirtutlo"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/resumen_articulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aqui va el resumen" />
+                android:text="Aqui va el resumen"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/imagen"
@@ -90,19 +115,28 @@
                 android:id="@+id/usuario_articulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aqui va el usuario" />
+                android:text="Aqui va el usuario"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/fecha_articulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aqui va el resumen" />
+                android:text="Aqui va la fecha"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/body_articulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aqui va el cuerpecito del articulo" />
+                android:text="Aqui va el cuerpecito del articulo"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 

@@ -1,12 +1,16 @@
 package com.example.portalnoticias;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,6 +30,8 @@ public class LoginForm extends AppCompatActivity {
     TextView error;
     Button loginButton;
     FloatingActionButton login, close;
+    CheckBox recuerdame;
+
 
 
     @Override
@@ -39,6 +45,9 @@ public class LoginForm extends AppCompatActivity {
         error = findViewById(R.id.failLog);
         login = findViewById(R.id.login);
         close = findViewById(R.id.close);
+        recuerdame = findViewById(R.id.checkBox_recuerdame);
+
+        final SharedPreferences recordatorio = getSharedPreferences("recuerdame", Context.MODE_PRIVATE);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +61,13 @@ public class LoginForm extends AppCompatActivity {
                 Rest.login(url,username.getText().toString(), password.getText().toString());
                 if (!Rest.getCabecera().equals("noLog")){
                     MainActivity.cambiarLogin();
+                    AdaptadorRecycler.cambiarEdicion();
+                    if(recuerdame.isChecked())
+                    {
+                        SharedPreferences.Editor editor = recordatorio.edit();
+                        editor.putString("apikey", Rest.getCabecera());
+                        editor.apply();
+                    }
                     finish();
                 }
                 else{
