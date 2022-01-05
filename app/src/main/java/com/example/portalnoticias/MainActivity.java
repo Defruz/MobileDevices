@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
     TabItem todas,nacional, economia, deportes, tecnologia;
-    ManejadorFragmentos manejadorFragmentos;
+    static ManejadorFragmentos manejadorFragmentos;
+    static ViewPager viewPager;
     Toolbar toolbar;
     static FloatingActionButton login, close, categorias, boton_agregar;
     Button cerrar, continuar;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         deportes = findViewById(R.id.categoria_deportes);
         tecnologia = findViewById(R.id.categoria_tecnologia);
 
-        ViewPager viewPager = findViewById(R.id.visualizado);
+        viewPager = findViewById(R.id.visualizado);
         tabLayout = findViewById(R.id.categorias);
 
         manejadorFragmentos = new ManejadorFragmentos(getSupportFragmentManager(), 5);
@@ -131,8 +132,13 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = recordatorio.edit();
                 editor.putString("apikey", Rest.getCabecera());
                 editor.apply();
-                AdaptadorRecycler.eliminarEdicion();
                 boton_agregar.setVisibility(View.GONE);
+                for (int i = 0; i < 5; i++){
+                    viewPager.setCurrentItem(i);
+                    manejadorFragmentos.notifyDataSetChanged();
+                }
+                viewPager.setCurrentItem(0);
+                manejadorFragmentos.notifyDataSetChanged();
             }
         });
     }
@@ -140,6 +146,11 @@ public class MainActivity extends AppCompatActivity {
         login.setVisibility(View.GONE);
         close.setVisibility(View.VISIBLE);
         boton_agregar.setVisibility(View.VISIBLE);
-
+        for (int i = 0; i < 5; i++){
+        viewPager.setCurrentItem(i);
+        manejadorFragmentos.notifyDataSetChanged();
+        }
+        viewPager.setCurrentItem(0);
+        manejadorFragmentos.notifyDataSetChanged();
     }
 }

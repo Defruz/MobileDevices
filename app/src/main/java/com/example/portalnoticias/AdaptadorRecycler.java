@@ -121,6 +121,9 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
             if(Rest.getCabecera() != "noLog"){
                 cambiarEdicion();
             }
+            else{
+                eliminarEdicion();
+            }
         }
     }
 

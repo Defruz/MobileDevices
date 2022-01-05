@@ -17,8 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.shape.MarkerEdgeTreatment;
 
 import org.w3c.dom.Text;
 
@@ -61,7 +63,6 @@ public class LoginForm extends AppCompatActivity {
                 Rest.login(url,username.getText().toString(), password.getText().toString());
                 if (!Rest.getCabecera().equals("noLog")){
                     MainActivity.cambiarLogin();
-                    AdaptadorRecycler.cambiarEdicion();
                     if(recuerdame.isChecked())
                     {
                         SharedPreferences.Editor editor = recordatorio.edit();
