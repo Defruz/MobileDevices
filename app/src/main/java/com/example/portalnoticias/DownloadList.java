@@ -27,6 +27,9 @@ public class DownloadList extends AsyncTask<URL, Void, ArrayList<Articulo>> {
             myURLConnection.setUseCaches(false);
             myURLConnection.setDoInput(true);
             myURLConnection.setDoOutput(false);
+            if (!Rest.getCabecera().equals("noLog")){
+                myURLConnection.setRequestProperty("Authorization", Rest.getCabecera());
+            }
             myURLConnection.setRequestProperty("Content-Type", "application/json");
             myURLConnection.connect();
             // leer lo devuelto por el servidor en la peticion del get

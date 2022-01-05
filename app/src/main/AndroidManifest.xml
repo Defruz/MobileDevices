@@ -15,14 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PortalNoticias">
         <activity
-            android:name=".vistaArticulo"
+            android:name=".VistaArticulo"
             android:exported="false" />
+        <activity
+        android:name=".EditarArticulo"
+        android:exported="false" />
         <activity
             android:name=".LoginForm"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".CrearArticulo"
+            android:exported="false"/>
+        <activity
+        android:name=".MainActivity"
+        android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

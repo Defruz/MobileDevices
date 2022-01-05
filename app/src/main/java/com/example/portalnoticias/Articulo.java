@@ -2,6 +2,8 @@ package com.example.portalnoticias;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 public class Articulo {
     @SerializedName(value = "id")
     private String id;

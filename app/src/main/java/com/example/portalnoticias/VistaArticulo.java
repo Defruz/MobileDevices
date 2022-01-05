@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class vistaArticulo extends AppCompatActivity {
+public class VistaArticulo extends AppCompatActivity {
 
     private TextView titulo;
     private TextView subtitulo;

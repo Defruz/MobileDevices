@@ -15,6 +15,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.Serializable;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -145,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         boton_agregar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, crearArticulo.class);
+                Intent intent = new Intent(MainActivity.this, CrearArticulo.class);
                 startActivity(intent);
             }
         });

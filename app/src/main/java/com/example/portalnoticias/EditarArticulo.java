@@ -2,7 +2,9 @@ package com.example.portalnoticias;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,13 +24,15 @@ import com.google.gson.JsonObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class crearArticulo extends AppCompatActivity {
+public class EditarArticulo extends AppCompatActivity {
     EditText titulo, subtitulo, resumen, body;
     Spinner categoria;
     Button cargarImagen, subirArticulo;
     ImageView imagen;
     String categoria_seleccionada;
+    String id;
     TextView error;
+    Articulo articulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +45,7 @@ public class crearArticulo extends AppCompatActivity {
         body = findViewById(R.id.editText_creaBody);
 
         categoria = findViewById(R.id.spinner_categoria);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.categoria_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categoria_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categoria.setAdapter(adapter);
 
@@ -52,7 +55,19 @@ public class crearArticulo extends AppCompatActivity {
         imagen = findViewById(R.id.imageView_imagen);
 
         error = findViewById(R.id.textView_error);
+        Intent i = getIntent();
+        titulo.setText(i.getStringExtra("titulo"));
+        subtitulo.setText(i.getStringExtra("subtitulo"));
+        body.setText(i.getStringExtra("cuerpo"));
+        resumen.setText(i.getStringExtra("resumen"));
+        id = i.getStringExtra("id").toString();
+        System.out.println(id);
 
+        Bitmap bitmap = i.getParcelableExtra("foto");
+
+        if(bitmap != null){
+            imagen.setImageBitmap(bitmap);
+        }
 
         subirArticulo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +79,7 @@ public class crearArticulo extends AppCompatActivity {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
+                articulo.setId(id);
                 articulo.setTitle(titulo.getText().toString());
                 articulo.setbody(body.getText().toString());
                 articulo.setAbstract(resumen.getText().toString());
@@ -74,26 +90,25 @@ public class crearArticulo extends AppCompatActivity {
 
 
                 if(articulo.getTitle() == null || articulo.getBody() == null || articulo.getAbstract() == null ||
-                articulo.getSubtitle() == null || articulo.getCategory() == null){
+                        articulo.getSubtitle() == null || articulo.getCategory() == null){
+                    System.out.println(articulo.getCategory());
                     error.setVisibility(View.VISIBLE);
                 }
                 else{
                     Rest.creActualiza(articulo, url);
+                    finish();
                 }
             }
         });
 
-         class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int pos, long id) {
-                categoria_seleccionada = parent.getItemAtPosition(pos).toString();
+        categoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                categoria_seleccionada = parentView.getItemAtPosition(position).toString();
             }
-
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
-        }
+        });
 
     }
 }
