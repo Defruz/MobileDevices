@@ -8,12 +8,14 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,6 +34,8 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
     String idAux;
     static Toolbar toolbar_botones;
     static FloatingActionButton boton_editar, boton_eliminar;
+    Button button_noElim, button_siElim;
+    ConstraintLayout botones_sino;
 
     public AdaptadorRecycler(Context context, ArrayList<Articulo> listaArticulo) {
         this.context = context;
@@ -119,6 +123,9 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
             boton_eliminar = itemView.findViewById(R.id.boton_eliminar);
             toolbar_botones = itemView.findViewById(R.id.toolbar_botones);
             id = itemView.findViewById(R.id.idSecreto);
+            button_noElim = itemView.findViewById(R.id.button_noElim);
+            button_siElim = itemView.findViewById(R.id.button_siElim);
+            botones_sino = itemView.findViewById(R.id.botones_sino);
 
             if(Rest.getCabecera() != "noLog"){
                 cambiarEdicion();
@@ -158,6 +165,37 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
                     intent.putExtra("resumen", articulo.getAbstract());
 
                     context.startActivity(intent);
+                }
+            });
+
+            boton_eliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    botones_sino.setVisibility(View.VISIBLE);
+                }
+            });
+
+            button_noElim.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    botones_sino.setVisibility(View.GONE);
+                }
+            });
+
+            button_siElim.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    button_noElim.setVisibility(View.GONE);
+                    button_siElim.setVisibility(View.GONE);
+
+                    String link = "https://sanger.dia.fi.upm.es/pmd-task/article/" + id.getText().toString();
+                    URL url = null;
+                    try {
+                        url = new URL(link);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    Rest.delete(url);
                 }
             });
         }
