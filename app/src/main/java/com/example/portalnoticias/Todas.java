@@ -22,9 +22,10 @@ public class Todas extends Fragment {
     AdaptadorRecycler adapter;
     private RecyclerView recyclerViewTodos;
     URL url;
-
+    // Con esta clase conseguimos mostrar en el recyclerView todas las noticias sin importar la categoria a la que pertenezcan
     @Nullable
     @Override
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         try {
             url = new URL ("https://sanger.dia.fi.upm.es/pmd-task/articles/10/1");

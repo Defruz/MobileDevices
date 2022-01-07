@@ -7,6 +7,8 @@ public class ListaNoticias {
     private int totalResults;
     private ArrayList<Articulo> lista;
 
+    //Clase que crea los atributos, getter y setters correspondientes a la lista
+    // de articulos(creada a partir de un arrayList)
 
     public ListaNoticias(String status, int totalResults, ArrayList<Articulo> lista) {
         this.status = status;

@@ -23,9 +23,10 @@ public class Deportes extends Fragment {
     private RecyclerView recyclerViewDeportes;
     URL url;
 
-
+    // Con esta clase conseguimos mostrar en el recyclerView unicamente las noticias que tengan como categoria "Deportes"
     @Nullable
     @Override
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.deportes, null);
 

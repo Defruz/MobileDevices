@@ -22,9 +22,10 @@ public class Economia extends Fragment {
     AdaptadorRecycler adapter;
     private RecyclerView recyclerViewEconomia;
     URL url;
-
+    // Con esta clase conseguimos mostrar en el recyclerView unicamente las noticias que tengan como categoria "Economía"
     @Nullable
     @Override
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         try {
             url = new URL ("https://sanger.dia.fi.upm.es/pmd-task/articles/100/1");

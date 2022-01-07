@@ -8,7 +8,9 @@ import android.util.Base64;
 import java.io.ByteArrayOutputStream;
 
 public class Utility {
+    // Esta clase contiene los metodos dados en el anexo para convertir una imagen en bitmap a String y a la inversa.
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
+
     public static Bitmap base64StringToImg(String input)
     {
         try {

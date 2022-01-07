@@ -19,7 +19,8 @@ public class VistaArticulo extends AppCompatActivity {
     private TextView fecha;
     private TextView categoria;
     private ImageView foto;
-
+    // clase en la que se asigna y se muestra  el contenido correspondiente a cada atributo del articulo
+    // para la vista mas detallada de este.
     @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

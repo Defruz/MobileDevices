@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Articulo {
+    //Clase que contiene todos los atributos, setters y getters para la creacion del objeto articulo
+    // Tanto para la vista general como para la vista mas detallada
     @SerializedName(value = "id")
     private String id;
     @SerializedName(value = "id_user")

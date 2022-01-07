@@ -22,9 +22,10 @@ public class Tecnologia extends Fragment {
     AdaptadorRecycler adapter;
     private RecyclerView recyclerViewTecnologia;
     URL url;
-
+    // Con esta clase conseguimos mostrar en el recyclerView unicamente las noticias que tengan como categoria "Tecnología"
     @Nullable
     @Override
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         try {
