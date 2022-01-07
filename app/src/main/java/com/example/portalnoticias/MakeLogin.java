@@ -17,6 +17,10 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 
+// Clase que extiende AsyncTask para poder realizar la conexion en otro thread, no sobrecargar la main activity
+// y que se pueda hacer correctamente la conexion HTTP. Esta clase se encargara de realizar el login y devolvera
+// un String con la cabecera necesaria para los metodos GET,POST y DELETE autorizados; y "noLog" en caso
+// de ser incorrecta la informacion introducida al realizar login.
 public class MakeLogin extends AsyncTask<Object, Void, String> {
     @Override
     protected String doInBackground(Object... objs) {

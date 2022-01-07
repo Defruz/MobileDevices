@@ -14,6 +14,9 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 
+// Clase que extiende AsyncTask para poder realizar la conexion en otro thread, no sobrecargar la main activity
+// y que se pueda hacer correctamente la conexion HTTP. Esta clase se encargara de descargar un articulo en concreto
+// y de devolver el resultado como un objeto Articulo creado.
 public class DownloadArticle extends AsyncTask<URL, Void, Articulo> {
 
     @Override

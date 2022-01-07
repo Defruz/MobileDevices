@@ -6,6 +6,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+// Clase que extiende AsyncTask para poder realizar la conexion en otro thread, no sobrecargar la main activity
+// y que se pueda hacer correctamente la conexion HTTP. Esta clase se encargara de eliminar un articulo en concreto.
 public class MakeEliminar extends AsyncTask<Object, Void, Void> {
     @Override
     protected Void doInBackground(Object... objs) {

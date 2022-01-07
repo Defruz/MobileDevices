@@ -2,6 +2,8 @@ package com.example.portalnoticias;
 
 import com.google.gson.annotations.SerializedName;
 
+// Clase con los atributos y getters y setters necesarios para tratar la informacion devuelta
+// por el servicio Rest al realizar la llamada a login.
 public class PostHeaders {
 
     @SerializedName(value = "user")

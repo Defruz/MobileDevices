@@ -17,10 +17,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+// Clase con la que se crea la nueva actividad tras pulsar el boton eliminar articulo desde la pantalla principal
+// cuando se esta logeado.
 public class EliminarArticulo extends AppCompatActivity {
     Button eliminarArticulo, salvarArticulo;
     String id;
 
+    // Tendra dos botones: uno para confirmar la eliminacion del articulo y otro que cancelara la accion.
+    // De este modo nos aseguramos de que no se elimine un articulo por error.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

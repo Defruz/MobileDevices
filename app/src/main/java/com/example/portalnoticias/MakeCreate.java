@@ -18,6 +18,9 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+// Clase que extiende AsyncTask para poder realizar la conexion en otro thread, no sobrecargar la main activity
+// y que se pueda hacer correctamente la conexion HTTP. Esta clase se encargara de crear un articulo
+// y de devolver el resultado como un objeto Articulo creado.
 public class MakeCreate extends AsyncTask<Object, Void, Articulo> {
     @Override
     protected Articulo doInBackground(Object... objs) {

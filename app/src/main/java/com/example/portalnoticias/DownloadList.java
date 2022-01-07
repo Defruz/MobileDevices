@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
+// Clase que extiende AsyncTask para poder realizar la conexion en otro thread, no sobrecargar la main activity
+// y que se pueda hacer correctamente la conexion HTTP. Esta clase se encargara de descargar una lista de
+// articulos y de devolver el resultado como un ArrayList de objetos Articulo.
 public class DownloadList extends AsyncTask<URL, Void, ArrayList<Articulo>> {
 
     @Override

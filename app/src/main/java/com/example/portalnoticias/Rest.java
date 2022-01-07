@@ -18,6 +18,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+// Clase auxiliar donde se definen todos los metodos que se utilizaran en el programa para realizar
+// las distintas operaciones: login, consultar una lista de articulos, consultar un articulo en
+// concreto, crear y/o actualizar un articulo, y eliminar un articulo.
+// Todos estos metodos haran las correspondientes llamadas a las AsyncTasks para ejecutarse y obtener
+// el resultado necesario.
 public class Rest {
     private static String cabecera = "noLog";
 

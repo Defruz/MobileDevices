@@ -28,6 +28,8 @@ import com.google.gson.JsonObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+// Clase con la que se crea la nueva actividad tras pulsar el boton editar articulo desde la pantalla principal
+// cuando se esta logeado
 public class EditarArticulo extends AppCompatActivity {
     EditText titulo, subtitulo, resumen, body;
     Spinner categoria;
@@ -38,6 +40,8 @@ public class EditarArticulo extends AppCompatActivity {
     TextView error;
     Articulo articulo;
 
+    // Tendra todos los campos necesarios para la creacion de un nuevo articulo, estando estos rellenos por
+    // la informacion que habia previamente en estos, en caso de que solo se quiera modificar alguno de los campos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,9 @@ public class EditarArticulo extends AppCompatActivity {
         body = findViewById(R.id.editText_creaBody);
 
         categoria = findViewById(R.id.spinner_categoria);
+
+        // Para la categoria se ha realizado con un Spinner que permite seleccionar una categoria entre unas previamente definidas,
+        // de modo que no se introduzca con tildes o de alguna manera que no sea reconocido por la aplicacion despues.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categoria_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categoria.setAdapter(adapter);
@@ -79,6 +86,7 @@ public class EditarArticulo extends AppCompatActivity {
             }
         });
 
+        // Si todos los campos son correctos se llamara al metodo de la clase Rest creada para crear el articulo.
         subirArticulo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +104,8 @@ public class EditarArticulo extends AppCompatActivity {
                 articulo.setSubtitle(subtitulo.getText().toString());
                 articulo.setCategory(categoria_seleccionada);
 
+                // Se obtiene el bitmap de la imagen sacada de la galeria y posteriormente se transforma a Base64String
+                // por medio de una funcion auxiliar ya proporcionada en la clase Utility.
                 Bitmap bitmap = ((BitmapDrawable) imagen.getDrawable()).getBitmap();
                 articulo.setImage_data(Utility.imgToBase64String(bitmap));
 
@@ -122,12 +132,15 @@ public class EditarArticulo extends AppCompatActivity {
 
     }
 
+    // Metodo auxiliar que permite abrir la galeria para seleccionar una imagen de esta que se subira.
     private void cargarImagen() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         gallery.setType("image/");
         startActivityForResult(gallery, 10);
     }
 
+    // Como resultado de la seleccion en la galeria se generara una imagen que se almacenara en la
+    // ImageView para despues procesarla como sea necesario.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

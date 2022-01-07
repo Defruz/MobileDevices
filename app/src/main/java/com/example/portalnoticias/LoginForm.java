@@ -27,6 +27,8 @@ import org.w3c.dom.Text;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
+// Clase con la que se crea la nueva actividad tras pulsar el boton login desde la pantalla principal
 public class LoginForm extends AppCompatActivity {
     EditText username, password;
     TextView error;
@@ -36,6 +38,8 @@ public class LoginForm extends AppCompatActivity {
 
 
 
+    // Se crearan los cajas de texto editable donde se introducira el usuario y la contraseña, asi como
+    // un checkbox recuerdame para mantener la sesion iniciada entre sesiones.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +53,11 @@ public class LoginForm extends AppCompatActivity {
         close = findViewById(R.id.close);
         recuerdame = findViewById(R.id.checkBox_recuerdame);
 
+        // Se obtiene la apikey en caso de que antes se hubiera guardado eligiendo el campo recuerdame.
         final SharedPreferences recordatorio = getSharedPreferences("recuerdame", Context.MODE_PRIVATE);
 
+        // Si la informacion introducida para el login es correcta se llamara al metodo login de la clase Rest
+        // creada para realizar el login.
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -28,6 +28,7 @@ import com.google.gson.JsonObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+// Clase con la que se crea la nueva actividad tras pulsar el boton crear articulo desde la pantalla principal
 public class CrearArticulo extends AppCompatActivity {
     EditText titulo, subtitulo, resumen, body;
     Spinner categoria;
@@ -37,6 +38,7 @@ public class CrearArticulo extends AppCompatActivity {
     String categoria_seleccionada;
     TextView error;
 
+    // Tendra todos los campos necesarios para la creacion de un nuevo articulo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,9 @@ public class CrearArticulo extends AppCompatActivity {
         body = findViewById(R.id.editText_creaBody);
 
         categoria = findViewById(R.id.spinner_categoria);
+
+        // Para la categoria se ha realizado con un Spinner que permite seleccionar una categoria entre unas previamente definidas,
+        // de modo que no se introduzca con tildes o de alguna manera que no sea reconocido por la aplicacion despues.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categoria_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categoria.setAdapter(adapter);
@@ -68,6 +73,7 @@ public class CrearArticulo extends AppCompatActivity {
             }
         });
 
+        // Si todos los campos son correctos se llamara al metodo de la clase Rest creada para crear el articulo.
         subirArticulo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +90,8 @@ public class CrearArticulo extends AppCompatActivity {
                 articulo.setSubtitle(subtitulo.getText().toString());
                 articulo.setCategory(categoria_seleccionada);
 
+                // Se obtiene el bitmap de la imagen sacada de la galeria y posteriormente se transforma a Base64String
+                // por medio de una funcion auxiliar ya proporcionada en la clase Utility.
                 if (imagenAux){
                     Bitmap bitmap = ((BitmapDrawable) imagen.getDrawable()).getBitmap();
                     articulo.setImage_data(Utility.imgToBase64String(bitmap));
@@ -111,6 +119,7 @@ public class CrearArticulo extends AppCompatActivity {
 
     }
 
+    // Metodo auxiliar que permite abrir la galeria para seleccionar una imagen de esta que se subira.
     private void cargarImagen() {
         imagenAux = true;
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
@@ -118,6 +127,8 @@ public class CrearArticulo extends AppCompatActivity {
         startActivityForResult(gallery, 10);
     }
 
+    // Como resultado de la seleccion en la galeria se generara una imagen que se almacenara en la
+    // ImageView para despues procesarla como sea necesario.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
