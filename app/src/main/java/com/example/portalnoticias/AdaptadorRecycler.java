@@ -35,7 +35,8 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
     static Toolbar toolbar_botones;
     static FloatingActionButton boton_editar, boton_eliminar;
 
-
+    //Esta clase se utiliza para crear la vista, en estilo tarjeta, de las noticias sin detalle
+    //Utilizamos tanto ScrollableView como CardView para lograr esto
     public AdaptadorRecycler(Context context, ArrayList<Articulo> listaArticulo) {
         this.context = context;
         this.listaArticulo = listaArticulo;
@@ -50,6 +51,9 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
+        //Nos ayudamos de este metodo para que al clicar en una noticia nos lleve a la propia noticia
+        //en detalle, para ello utilizamos otra clase y otro layout
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,6 +109,8 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
         return 0;
     }
 
+    //A partir de esta Inner Class se crea cada tarjeta y podemos trabajar con metodos internos
+    //para cada una de ellas
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView titulo, abstracto, categoria, id;
@@ -123,6 +129,8 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
             toolbar_botones = itemView.findViewById(R.id.toolbar_botones);
             id = itemView.findViewById(R.id.idSecreto);
 
+            //De este modo cada tarjeta se actualiza de una forma diferente si el usuario
+            //esta logueado o no
             if(Rest.getCabecera() != "noLog"){
                 cambiarEdicion();
             }
@@ -130,6 +138,8 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
                 eliminarEdicion();
             }
 
+            //Se define el funcionamiento de cada boton de la tarjeta al pulsarlo para
+            //poder utilizar las funciones de editar y eliminar articulos
             boton_editar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -175,6 +185,7 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Vi
         }
     }
 
+    //Meotodos auxiliares relacionados con la visibilidad de botones necesarios al estar logueado
     public static void cambiarEdicion() {
         toolbar_botones.setVisibility(View.VISIBLE);
     }

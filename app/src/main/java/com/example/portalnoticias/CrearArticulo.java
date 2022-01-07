@@ -33,6 +33,7 @@ public class CrearArticulo extends AppCompatActivity {
     Spinner categoria;
     Button cargarImagen, subirArticulo;
     ImageView imagen;
+    Boolean imagenAux;
     String categoria_seleccionada;
     TextView error;
 
@@ -55,6 +56,7 @@ public class CrearArticulo extends AppCompatActivity {
         subirArticulo = findViewById(R.id.button_subirArticulo);
 
         imagen = findViewById(R.id.imageView_imagen);
+        imagenAux = false;
 
         error = findViewById(R.id.textView_error);
 
@@ -82,12 +84,13 @@ public class CrearArticulo extends AppCompatActivity {
                 articulo.setSubtitle(subtitulo.getText().toString());
                 articulo.setCategory(categoria_seleccionada);
 
-                Bitmap bitmap = ((BitmapDrawable) imagen.getDrawable()).getBitmap();
-                articulo.setImage_data(Utility.imgToBase64String(bitmap));
+                if (imagenAux){
+                    Bitmap bitmap = ((BitmapDrawable) imagen.getDrawable()).getBitmap();
+                    articulo.setImage_data(Utility.imgToBase64String(bitmap));
+                }
 
-                if(articulo.getTitle() == null || articulo.getBody() == null || articulo.getAbstract() == null ||
-                articulo.getSubtitle() == null || articulo.getCategory() == null){
-                    System.out.println(articulo.getCategory());
+                if(articulo.getTitle().equals("") ||articulo.getBody().equals("") || articulo.getAbstract().equals("")||
+                articulo.getSubtitle().equals("")|| articulo.getCategory().equals("")){
                     error.setVisibility(View.VISIBLE);
                 }
                 else{
@@ -109,6 +112,7 @@ public class CrearArticulo extends AppCompatActivity {
     }
 
     private void cargarImagen() {
+        imagenAux = true;
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         gallery.setType("image/");
         startActivityForResult(gallery, 10);

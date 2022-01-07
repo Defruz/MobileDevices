@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button cerrar, continuar;
 
 
+    //Clase de inicio que genera la pantalla principal sobre la que orbita la app
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         categorias = findViewById(R.id.boton_categorias);
         boton_agregar = findViewById(R.id.boton_agregar);
 
+        //Con esta opcion y con el siguiente if podemos recordar al usuario
+        // e iniciar la app en consecuencia mostrando las opciones que correspondan
         final SharedPreferences recordatorio = getSharedPreferences("recuerdame", Context.MODE_PRIVATE);
 
         String cabecera = recordatorio.getString("apikey", "");
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             boton_agregar.setVisibility(View.VISIBLE);
         }
 
+        //Utilizamos un TabLayout para desplazarnos por las distintas categorías y actualizar la vista
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -88,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         categorias.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Metodo que nos permite ir a la pantalla en la que vamos a realizar el login
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //Este boton te permite cerrar sesion preguntandote antes si estas seguro
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Tras pulsar este boton se realizan las operaciones oportunas para que no solo el usuario
+        // sino la propia app sepan que se ha cerrado sesion
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Este boton inicia una nueva actividad que permite la creacion de un nuevo articulo
         boton_agregar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -152,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    //Metodo auxiliar que nos permite realizar las operaciones necesarias despues de que el usuario
+    // inicie sesion
     public static void cambiarLogin (){
         login.setVisibility(View.GONE);
         close.setVisibility(View.VISIBLE);

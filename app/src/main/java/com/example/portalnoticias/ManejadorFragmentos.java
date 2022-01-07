@@ -21,6 +21,9 @@ public class ManejadorFragmentos extends FragmentPagerAdapter {
         contador_pestanas = behavior;
     }
 
+    //Mediante este metodo podemos obtener la vista seleccionada segun el TabLayout
+    //Se llama a las clases correspondientes que obtienen una lista de noticias que correspondan a
+    //dicha categoria y que generan la vista dentro del RecyclerView
     @NonNull
     @Override
     public Fragment getItem(int position) {
