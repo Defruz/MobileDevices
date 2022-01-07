@@ -78,7 +78,7 @@ public class Rest {
     }
 
     public static void delete(URL url){
-            new MakeEliminar().execute(url);
+        new MakeEliminar().execute(url);
     }
 
 }

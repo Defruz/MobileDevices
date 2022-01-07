@@ -51,43 +51,6 @@
                     android:text="Aqui va el abstract del articulo"
                     android:textSize="16dp"></TextView>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/botones_sino"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:visibility="gone">
-
-                    <Button
-                        android:id="@+id/button_noElim"
-                        android:layout_width="110dp"
-                        android:layout_height="70dp"
-                        android:backgroundTint="#E11111"
-                        android:text="No eliminar"
-                        android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.24"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.47000003"
-                        app:strokeColor="#BD5858" />
-
-                    <Button
-                        android:id="@+id/button_siElim"
-                        android:layout_width="110dp"
-                        android:layout_height="70dp"
-                        android:backgroundTint="#4CAF50"
-                        android:text="Eliminar"
-                        android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.772"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.473" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <ImageView
                     android:id="@+id/imagen_miniatura"
                     android:layout_width="match_parent"
@@ -160,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
 
         </LinearLayout>

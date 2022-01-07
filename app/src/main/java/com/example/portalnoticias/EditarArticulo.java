@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,13 +65,19 @@ public class EditarArticulo extends AppCompatActivity {
         body.setText(i.getStringExtra("cuerpo"));
         resumen.setText(i.getStringExtra("resumen"));
         id = i.getStringExtra("id").toString();
-        System.out.println(id);
 
         Bitmap bitmap = i.getParcelableExtra("foto");
 
         if(bitmap != null){
             imagen.setImageBitmap(bitmap);
         }
+
+        cargarImagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cargarImagen();
+            }
+        });
 
         subirArticulo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,12 +96,12 @@ public class EditarArticulo extends AppCompatActivity {
                 articulo.setSubtitle(subtitulo.getText().toString());
                 articulo.setCategory(categoria_seleccionada);
 
-                // articulo.setImagen
+                Bitmap bitmap = ((BitmapDrawable) imagen.getDrawable()).getBitmap();
+                articulo.setImage_data(Utility.imgToBase64String(bitmap));
 
 
                 if(articulo.getTitle() == null || articulo.getBody() == null || articulo.getAbstract() == null ||
                         articulo.getSubtitle() == null || articulo.getCategory() == null){
-                    System.out.println(articulo.getCategory());
                     error.setVisibility(View.VISIBLE);
                 }
                 else{
@@ -110,5 +120,20 @@ public class EditarArticulo extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void cargarImagen() {
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        gallery.setType("image/");
+        startActivityForResult(gallery, 10);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            Uri imageUri = data.getData();
+            imagen.setImageURI(imageUri);
+        }
     }
 }

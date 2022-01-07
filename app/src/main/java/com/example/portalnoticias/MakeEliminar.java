@@ -16,13 +16,13 @@ public class MakeEliminar extends AsyncTask<Object, Void, Void> {
                 HttpURLConnection myURLConnection = (HttpURLConnection) url.openConnection();
                 myURLConnection.setRequestMethod("DELETE");
                 myURLConnection.setUseCaches(false);
-                myURLConnection.setDoInput(false);
-                myURLConnection.setDoOutput(false);
+                myURLConnection.setDoInput(true);
+                myURLConnection.setDoOutput(true);
 
-                myURLConnection.setRequestProperty("Content-Type", "application/json");
                 myURLConnection.setRequestProperty("Authorization", Rest.getCabecera());
                 myURLConnection.connect();
 
+                myURLConnection.getResponseCode();
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();

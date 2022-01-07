@@ -18,6 +18,9 @@
             android:name=".VistaArticulo"
             android:exported="false" />
         <activity
+            android:name=".EliminarArticulo"
+            android:exported="false" />
+        <activity
         android:name=".EditarArticulo"
         android:exported="false" />
         <activity
